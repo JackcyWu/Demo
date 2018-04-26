@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <!-- 全局国际化资源文件的配置 -->
+    <constant name="struts.custom.i18n.resources" value="message"></constant>
+
+    <package name="default" namespace="/" extends="struts-default">
+        
+         <!-- 全局结果视图 -->
+         <global-results>
+             <result name="login">/login/login.jsp</result>
+         </global-results>
+	<action name="userAction_*" class="cn.tinzel.web.action.UserAction" method="{1}">
+		<result name="loginSUCCESS">/login/home.jsp</result>
+		<result name="saveSUCCESS" type="redirectAction">userAction_find</result>
+		<result name="findSUCCESS">/user/list.jsp</result>
+		<result name="deleteSUCCESS" type="redirectAction">userAction_find</result>
+	    <result name="viewSUCCESS">/user/view.jsp</result>
+	    
+	    <result name="toUpdateSUCCESS">/user/edit.jsp</result>
+		<result name="doUdateSUCCESS" type="redirectAction">userAction_find</result>
+	    
+	    <result name="loginINPUT">/login/login.jsp</result>
+	    <result name="saveINPUT">/user/add.jsp</result>
+           
+	</action>
+       
+
+    </package>
+
+</struts>
